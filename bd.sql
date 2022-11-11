@@ -147,3 +147,9 @@ CREATE TABLE RelationChanson(
    FOREIGN KEY(identifiantChanson) REFERENCES Chanson(identifiantChanson),
    FOREIGN KEY(identifiantChanson2) REFERENCES Chanson(identifiantChanson)
 );
+
+
+/* INSERTION */
+
+INSERT INTO `Album` (`identifiantAlbum`, `libelleAlbum`, `titreAlbum`, `dateSortieAlbum`, `nomProducteur`, `nomIngenieurSon`, `descriptionAlbum`) VALUES (NULL, 'AlbumStudio', 'Elevation', '2022-11-11', 'BEP Music', 'Michel Son', NULL);
+INSERT INTO 'Album' ('identifiantAlbum', 'libelleAlbum', 'titreAlbum', 'dateSortieAlbum', 'nomProducteur', 'nomIngenieurSon', 'descriptionAlbum') VALUES (NULL, 'AlbumCompilation', 'The Beatles', '1968-11-22', 'Calderstone Productions Limited', NULL, 'Double Album Du groupe The Beatles');
