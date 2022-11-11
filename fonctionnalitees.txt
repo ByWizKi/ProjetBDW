@@ -1,0 +1,78 @@
+Fonctionnalité 1) ajouter une chanson
+
+- lorsqu'une chanson est ajoute
+  
+  par default dateCreationChanson sera la date now
+  par default le lieux sera null
+
+ensuite dans la table fichier audio
+  on ajoute la duree issus du formulaire
+  par default libelleVersion est "Originale" 
+  par default dateCreationVersion = dateCreationChanson
+  par default nombreDeLecture = 0
+  par default description = "Version Originale de" + "versionChanson"
+  par default le nom du fichier est titrechanson+Version+.mp3
+  
+- Les Verifications au niveau des ajouts
+
+que tout les types du formulaire sont correctes
+
+
+Fonctionnalité 2) 
+
+
+
+Fonctionnalité 3)
+
+parmis toutes les versions des chansons on prend aleatoirement n versions de chanson
+
+par default la duree de la playlist est de 20 min sois somme de toutes les versions = 20min
+par default aucun n'est specifier sinon on recupere que les versions d'un genre specifique mais pas exclusivement
+prendre en compte les stats des version
+
+Algorithme:
+
+Fonction CreationPlaylistAleatoire(nomPlaylist : string, duree : int, genre: string, tabVersion: VersionChanson)
+PreCondition : aucune
+PostCondition : on renvoie un tableau de version de maniere aleatoire en fonction des parametres
+variables mode-donnees : nomPlaylist, duree, genre, bd
+
+variables local:
+tab : tableau de version de chanson vide
+tabVersionGenre : tableau de version de chanson vide
+time : int
+compteur : int 
+i : int
+compteur <- 0
+Debut
+
+si duree est egale a 0 alors// on consirdere ici que la valuer NULL = 0
+  time <- 20
+sinon
+  time <- duree
+
+si genre est egale a "" alors // on considere ici que la valeur NULL = ""
+  tans que compteur est different de time alors
+    i <- random [0, lenVersionChanson]
+    tab <- tabVersion[i]
+    compteur <- compteur+tab[i].duree
+   fin tans que
+sinon
+  tabVersionGenre <- toutes les versions de chanson avec tabVersion.genre = genre
+  tans que compteur est different de time alos
+    i <- random [0, lenVersionChanson]
+    si taille de tab%4 == 0 alors
+      tab <- tabVersion[i]
+    sinon
+      tab <- tabVersionGenre[i]
+   fin tans que
+renvoie (nomPlaylist, tab)
+fin
+  
+
+
+
+
+
+
+
