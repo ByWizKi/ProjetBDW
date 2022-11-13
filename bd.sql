@@ -151,10 +151,12 @@ CREATE TABLE RelationChanson(
 
 /* INSERTION */
 
+/* Ajout des Album */
 INSERT INTO Album (identifiantAlbum, libelleAlbum, titreAlbum, dateSortieAlbum, nomProducteur, nomIngenieurSon, descriptionAlbum) VALUES (NULL, 'AlbumStudio', 'Elevation', '2022-11-11', 'BEP Music', 'Michel Son', NULL);
 INSERT INTO Album (identifiantAlbum, libelleAlbum, titreAlbum, dateSortieAlbum, nomProducteur, nomIngenieurSon, descriptionAlbum) VALUES (NULL, 'AlbumCompilation', 'The Beatles', '1968-11-22', 'Calderstone Productions Limited', NULL, 'Double Album Du groupe The Beatles');
 INSERT INTO Album (identifiantAlbum, libelleAlbum, titreAlbum, dateSortieAlbum, nomProducteur, nomIngenieurSon, descriptionAlbum) VALUES (NULL, 'AlbumStudio', 'Ecole des points vitaux', '2010-03-29', 'WHATI-B', 'Renaud Son', NULL);
 
+/* Ajout des Musicien */
 INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene) VALUES (NULL,'Ann Ferguson', 'Stacy', 'Fergie');
 INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene) VALUES (NULL, 'James Adams', 'William ', 'Will.i.am');
 INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene) VALUES (NULL, 'Pineda Lindo', 'Allen', 'Apl.de.ap');
@@ -175,10 +177,12 @@ INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene
 INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene) VALUES (NULL, 'Baldé', 'Mamadou', 'Doomams');
 INSERT INTO Musicien (identifiantMusicien, nomMusicien, prenomMusicien, nomScene) VALUES (NULL, 'Fall', 'Abdel Karim', 'Lefa'); 
 
+/* Ajout des groupes */
 INSERT INTO Groupe (identifiantGroupe, nomGroupe, dateCreationGroupe, dateSeparationGroupe) VALUES (NULL, 'Black Eyed Peas', '1995', NULL);
 INSERT INTO Groupe (identifiantGroupe, nomGroupe, dateCreationGroupe, dateSeparationGroupe) VALUES (NULL, 'The Beatles', '1962', '1970');
 INSERT INTO Groupe (identifiantGroupe, nomGroupe, dateCreationGroupe, dateSeparationGroupe) VALUES (NULL, 'Sexion d Assaut', '2002', '2013');
 
+/* Ajout des musiciens au groupe */
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (1, 1, 'Chanteuse', '2003', '2010', 0);
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (1, 2, 'Chanteure', '1995', NULL, 1);
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (1, 3, 'Chanteure', '1995', NULL, 1);
@@ -199,6 +203,7 @@ INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateE
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (3, 16, 'Rappeur', '2002','2013', 1);
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (3, 17, 'Rappeur', '2002','2013', 1);
 
+/* Ajout des Chansons dans la base de donnees */
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Simply The Best", '2022-11-11', 1,  NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Muevelo", '2022-11-11', 1, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Audios", '2022-11-11', 1,  NULL);
@@ -250,11 +255,12 @@ INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, ident
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Wati by Night", '2010-03-29', 3, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Désolé", '2010-03-29', 3, NULL);
 
+/* Ajout des genres dans la base de donnees */
 INSERT INTO GENRE(identifiantGenre, nomGenre, libelleTypeGenre) VALUES (NULL, "Hip-Hop", NULL);
 INSERT INTO GENRE(identifiantGenre, nomGenre, libelleTypeGenre) VALUES (NULL, "Rock", NULL);
 INSERT INTO GENRE(identifiantGenre, nomGenre, libelleTypeGenre) VALUES (NULL, "POP", NULL);
 
-
+/* Ajout des genres au chanson */
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 1);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 2);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 3);
@@ -304,6 +310,30 @@ INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 44);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 45);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 46);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 47);
+
+/* Ajout des chanson au fichier audio */
+
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Simply The Best.mp3", '00:03:56', '2022-11-11', 202, 6102, NULL, 1);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Muevelo", '00:04:14', '2022-11-11', 2020, 102, NULL, 2);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Audios", '00:03:40', '2022-11-11', 27520, 10102, NULL, 3);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Double d'z", '00:03:20', '2022-11-11', 7520, 12, NULL, 4);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Bailar contigo", '00:03:43', '2022-11-11', 70, 233, NULL, 5);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Get down", '00:03:52', '2022-11-11', 7033, 2313, NULL, 6);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Dance 4 u", '00:04:35', '2022-11-11', 72033, 231, NULL, 7);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Guarantee", '00:03:40', '2022-11-11', 73, 2831, NULL, 8);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Filipina queen", '00:03:30', '2022-11-11', 7323, 1831, NULL, 9);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Jump", '00:03:36', '2022-11-11', 73223, 181, NULL, 10);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "In the air", '00:03:40', '2022-11-11', 709, 81, NULL, 11);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Fire starter", '00:03:14', '2022-11-11', 7029, 8111, NULL, 12);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "No one loves me", '00:04:23', '2022-11-11', 71029, 11, NULL, 13);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Don't You Worry", '00:03:14', '2022-11-11', 4029, 1001, NULL, 14);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "L.o.v.e.", '00:03:57', '2022-11-11', 40129, 191, NULL, 15);
+
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Back In The U.S.S.R.", '00:02:43', '1968-11-22', 1222, 191, NULL, 16);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Dear Prudence", '00:03:55', '1968-11-22', 12122, 11191, NULL, 17);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Glass Onion", '00:02:17', '1968-11-22', 12452, 111, NULL, 18);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Ob-La-Di, Ob-La-Da", '00:03:08', '1968-11-22', 12952, 11001, NULL, 19);
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Wild Honey Pie", '00:00:52', '1968-11-22', 12952, 11001, NULL, 19);
 
 
 
