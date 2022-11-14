@@ -47,7 +47,7 @@ CREATE TABLE Chanson(
 
 
 CREATE TABLE FichierAudio(
-    numeroVersion INT NOT NULL,
+    numeroVersion INT UNIQUE NOT NULL AUTO_INCREMENT,
     libelleVersion VARCHAR(255),
     nomFichierAudio VARCHAR(255),
     dureeVersion TIME CHECK (dureeVersion > '00:00:00' AND dureeVersion <= '23:59:59'),
@@ -56,7 +56,7 @@ CREATE TABLE FichierAudio(
     skipCount INT DEFAULT 0,
     descriptionVersion VARCHAR(255),
     identifiantChanson INT NOT NULL,
-    PRIMARY KEY (identifiantChanson, numeroVersion),
+    PRIMARY KEY (numeroVersion),
     FOREIGN KEY(identifiantChanson) REFERENCES Chanson(identifiantChanson)); 
 
 CREATE TABLE Interprete(
