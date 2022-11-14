@@ -41,13 +41,13 @@ CREATE TABLE Chanson(
     titreChanson VARCHAR(255),
     dateCreationChanson DATE,
     identifiantGroupe INT NOT NULL,
-    identifiantLieux INT NOT NULL,
+    identifiantLieux INT,
     FOREIGN KEY(identifiantGroupe) REFERENCES Groupe(identifiantGroupe),
     FOREIGN KEY(identifiantLieux) REFERENCES Lieux(identifiantLieux));
 
 
 CREATE TABLE FichierAudio(
-    numeroVersion INT UNIQUE NOT NULL,
+    numeroVersion INT NOT NULL,
     libelleVersion VARCHAR(255),
     nomFichierAudio VARCHAR(255),
     dureeVersion TIME CHECK (dureeVersion > '00:00:00' AND dureeVersion <= '23:59:59'),
