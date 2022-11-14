@@ -347,4 +347,3 @@ INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "L
 INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Stade de France", "48.92445389223188, 2.3601618162509532");
 INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "La Cigale", "48.88251870962403, 2.3401513043013047");
 INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Uuma", "48.890974872927885, 2.3233270000212354");
-
