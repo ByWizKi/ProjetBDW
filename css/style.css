@@ -1,0 +1,17 @@
+
+
+
+#divNav {
+box-sizing: border-box;
+
+position: absolute;
+width: 1300px;
+height: 80px;
+left: 72px;
+top: 34px;
+
+background: #FFE000;
+border: 1px solid #000000;
+border-radius: 10px;
+
+}
