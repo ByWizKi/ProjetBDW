@@ -203,6 +203,12 @@ INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateE
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (3, 16, 'Rappeur', '2002','2013', 1);
 INSERT INTO FaitParti (identifiantGroupe, identifiantMusicien, roleGroupe, dateEntrerGroupe, dateSortieGroupe, membreFondateur) VALUES (3, 17, 'Rappeur', '2002','2013', 1);
 
+/* Ajout des groupes au Album */
+INSERT INTO Enregistre (identifiantGroupe, identifiantAlbum) VALUES (1, 1);
+INSERT INTO Enregistre (identifiantGroupe, identifiantAlbum) VALUES (2, 2);
+INSERT INTO Enregistre (identifiantGroupe, identifiantAlbum) VALUES (3, 3);
+
+
 /* Ajout des Chansons dans la base de donnees */
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Simply The Best", '2022-11-11', 1,  NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Muevelo", '2022-11-11', 1, NULL);
@@ -312,7 +318,6 @@ INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 46);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 47);
 
 /* Ajout des chanson au fichier audio */
-
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Simply The Best.mp3", '00:03:56', '2022-11-11', 202, 6102, NULL, 1);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Muevelo", '00:04:14', '2022-11-11', 2020, 102, NULL, 2);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Audios", '00:03:40', '2022-11-11', 27520, 10102, NULL, 3);
@@ -336,5 +341,10 @@ INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVe
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (2, "REMASTERED", "Wild Honey Pie", '00:00:52', '1968-11-22', 12952, 11001, NULL, 19);
 
 
-
+/* Insertion de lieux */
+INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Accor Arena", "48.83853603276041, 2.3785848204020192");
+INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Le Transbordeur", "45.78389428150223, 4.860441760475767");
+INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Stade de France", "48.92445389223188, 2.3601618162509532");
+INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "La Cigale", "48.88251870962403, 2.3401513043013047");
+INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Uuma", "48.890974872927885, 2.3233270000212354");
 
