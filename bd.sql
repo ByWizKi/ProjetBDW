@@ -318,6 +318,10 @@ INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 46);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 47);
 
 /* Ajout des chanson au fichier audio */
+<<<<<<< HEAD
+=======
+INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Simply The Best.mp3", '00:03:56', '2022-11-11', 202, 6102, NULL, 1);
+>>>>>>> 69e1bbe (Ajout des donnees dans le fichier bd.sql)
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Muevelo.mp3", '00:04:14', '2022-11-11', 2020, 102, NULL, 2);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Audios.mp3", '00:03:40', '2022-11-11', 27520, 10102, NULL, 3);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Double d'z.mp3", '00:03:20', '2022-11-11', 7520, 12, NULL, 4);
@@ -367,6 +371,7 @@ INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVe
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Ca chuchote.mp3", '00:03:42', '2010-03-29', 6731, 722, NULL, 46);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Wati by Night.mp3", '00:04:08', '2010-03-29', 9543871, 5422, NULL, 47);
 INSERT INTO FichierAudio(numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (1, "ORIGINAL", "Désolé.mp3", '00:03:24', '2010-03-29', 1000771, 532222, NULL, 48);
+<<<<<<< HEAD
 
 /* Insertion de lieux */
 INSERT INTO Lieux(identifiantLieux, nomLieux, coordonneesLieux) VALUES (NULL, "Accor Arena", "48.83853603276041, 2.3785848204020192");
