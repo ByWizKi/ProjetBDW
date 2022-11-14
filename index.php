@@ -1,4 +1,15 @@
+<php?
+session_start();
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require('inc/config-bd.php');
+require('modele/modele.php');
+require('inc/includes.php');
+require('inc/routes.php');
+
 $connexion = getConnexionBD();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +21,6 @@ $connexion = getConnexionBD();
     <?php include('static/header.php'); ?>
     <div id="divCentral">
 		<?php include('static/menu.php'); ?>
-		
 		<main>
 		<?php
 		$controleur = 'controleurAccueil'; // par défaut, on charge accueil.php
@@ -22,11 +32,11 @@ $connexion = getConnexionBD();
 				$vue = $routes[$nomPage]['vue'];
 			}
 		}
-		include('controleurs/' . $controleur . '.php');
-		include('vues/' . $vue . '.php');
+		//include('controleurs/' . $controleur . '.php');
+		//include('vues/' . $vue . '.php');
 		?>
 		</main>
 	</div>
-    <?php include('static/footer.php'); ?>
+    <?php //include('static/footer.php'); ?>
 </body>
 </html>

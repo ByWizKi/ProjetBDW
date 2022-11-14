@@ -1,4 +1,3 @@
 <?php 
 $nomSite = "The Player";
-
 ?>
