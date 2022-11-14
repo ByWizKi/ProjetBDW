@@ -41,7 +41,7 @@ CREATE TABLE Chanson(
     titreChanson VARCHAR(255),
     dateCreationChanson DATE,
     identifiantGroupe INT NOT NULL,
-    identifiantLieux INT NOT NULL,
+    identifiantLieux INT,
     FOREIGN KEY(identifiantGroupe) REFERENCES Groupe(identifiantGroupe),
     FOREIGN KEY(identifiantLieux) REFERENCES Lieux(identifiantLieux));
 
