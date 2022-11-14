@@ -23,8 +23,8 @@ $connexion = getConnexionBD();
 		<?php include('static/menu.php'); ?>
 		<main>
 		<?php
-		$controleur = 'controleurAccueil'; // par défaut, on charge accueil.php
-		$vue = 'vueAccueil'; // par défaut, on charge accueil.php
+		$controleur = 'controleurAccueil'; 
+		$vue = 'vueAccueil'; 
 		if(isset($_GET['page'])) {
 			$nomPage = $_GET['page'];
 			if(isset($routes[$nomPage])) { // si la page existe dans le tableau des routes, on la charge
@@ -32,8 +32,8 @@ $connexion = getConnexionBD();
 				$vue = $routes[$nomPage]['vue'];
 			}
 		}
-		//include('controleurs/' . $controleur . '.php');
-		//include('vues/' . $vue . '.php');
+		include('controleurs/' . $controleur . '.php');
+		include('vues/' . $vue . '.php');
 		?>
 		</main>
 	</div>
