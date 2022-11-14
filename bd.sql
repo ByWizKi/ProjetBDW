@@ -214,7 +214,7 @@ INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, ident
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Muevelo", '2022-11-11', 1, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Audios", '2022-11-11', 1,  NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Double d'z", '2022-11-11', 1, NULL);
-INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Bailar contigo", '2022-11-11', 1, NULL);
+INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Bailar contigo", '2022-11-11', 5, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Get down", '2022-11-11', 1, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Dance 4 u", '2022-11-11', 1, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Guarantee", '2022-11-11', 1, NULL);
@@ -229,8 +229,8 @@ INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, ident
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Back In The U.S.S.R.", '1968-11-22', 2, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Dear Prudence", '1968-11-22', 2, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Glass Onion", '1968-11-22', 2, NULL);
-INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Ob-La-Di, Ob-La-Da", 2, NULL);
-INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Wild Honey Pie", 2, NULL);
+INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Ob-La-Di, Ob-La-Da", '1968-11-22',2, NULL);
+INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Wild Honey Pie", '1968-11-22',2, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "The Continuing Story Of Bungalow Bill", '1968-11-22', 2, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "While My Guitar Gently Weeps", '1968-11-22', 2, NULL);
 INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, "Happiness Is A Warm Gun", '1968-11-22', 2, NULL);
