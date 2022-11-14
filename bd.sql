@@ -281,8 +281,8 @@ INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 11);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 12);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 13);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 14);
-
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (2, 15);
+
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 16);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 17);
 INSERT INTO APourGenre(identifiantGenre, identifiantChanson) VALUES (3, 18);
