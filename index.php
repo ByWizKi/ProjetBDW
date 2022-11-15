@@ -14,7 +14,7 @@ $connexion = getConnexionBD();
 <html>
 <head>
     <meta charset="utf-8" />
-    <title><?= $nomSite ?></title>
+    <title><?= $nomSite?></title>
     <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body>

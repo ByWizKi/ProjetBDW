@@ -14,4 +14,6 @@ function deconnectBD($connexion) {
 	mysqli_close($connexion);
 }
 
+
+
 ?>
