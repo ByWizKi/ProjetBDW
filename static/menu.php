@@ -1,8 +1,12 @@
 <div id="divNav">
     <nav>
-        <a href="index.php">Accueil</a>
-        <a href="">Ajouter chanson</a>
-        <a href="">Les Importations</a>
-        <a href="">Ajouter Playlist</a>
+
+        <div id="textMenu">
+            <a href="index.php" id="t1M">Accueil</a>
+            <a href="vues/vueAjouterChanson.php" id="t3M">Ajouter chanson</a>
+            <a href="vues/vueImport.php" id="t3M">Les Importations</a>
+            <a href="vues/vueAjouterPlaylist.php"id="t4M">Ajouter Playlist</a>
+        </div>
+        
     </nav>
 </div>
