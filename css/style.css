@@ -1,11 +1,14 @@
 
 #mainBody{
     position: relative;
-    width: 1444px;
-    height: 2368px;
     background: #252525;
 
 }
+
+footer {
+    padding: 1em 0;
+}
+
 #divNav {
     box-sizing: border-box;
 

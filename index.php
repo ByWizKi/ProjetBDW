@@ -37,6 +37,6 @@ $connexion = getConnexionBD();
 		?>
 		</main>
 	</div>
-    <?php //include('static/footer.php'); ?>
+    <?php include('static/footer.php'); ?>
 </body>
 </html>
