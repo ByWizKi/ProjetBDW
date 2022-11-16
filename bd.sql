@@ -51,7 +51,7 @@ CREATE TABLE FichierAudio(
     libelleVersion VARCHAR(255),
     nomFichierAudio VARCHAR(255),
     dureeVersion TIME CHECK (dureeVersion > '00:00:00' AND dureeVersion <= '23:59:59'),
-    dateCreationVersion DATE DEFAULT CURRENT_DATE(),
+    dateCreationVersion DATE DEFAULT CAST(CURRENT_TIMESTAMP AS DATE),
     playCount INT DEFAULT 0,
     skipCount INT DEFAULT 0,
     descriptionVersion VARCHAR(255),
