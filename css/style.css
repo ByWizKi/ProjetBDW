@@ -16,10 +16,6 @@
 
 }
 
-footer {
-    padding: 1em 0;
-}
-
 #divNav {
     box-sizing: border-box;
     display: flex;
@@ -130,26 +126,43 @@ footer {
     flex-grow: 0;
 }
 
+#divSearch{
+    position: absolute;
+    width: 973px;
+    height: 100px;
+    left: 400.5px;
+    top: 146px;
+
+    background: #494848;
+    border-radius: 10px;
+}
+
 #inputSearch{
     position: absolute;
-    width: 600px;
+    width: 250px;
     height: 80px;
-    left: 471px;
-    top: 147px;
-
+    left: 141px;
+    border: none;
     font-family: 'Lato';
     font-style: italic;
     font-weight: 400;
     font-size: 36px;
     line-height: 43px;
     display: flex;
-    text-align: center;
+    align-items: center;
     letter-spacing: 0.3em;
-    border: none;
-    border-radius: 10px;
     color: #FFFFFF;
-    background-color:#494848; 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #494848;
+}
+
+#selectFiltres{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 682.5px;
+    top: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #selectFiltreText{
@@ -158,7 +171,6 @@ footer {
     height: 43px;
     left: 755px;
     top: 29px;
-
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -168,8 +180,6 @@ footer {
     align-items: center;
     text-align: center;
     letter-spacing: 0.3em;
-
     color: #FFFFFF;
-
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
