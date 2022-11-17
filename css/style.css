@@ -5,6 +5,17 @@
 
 }
 
+#LogoHeader{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 22px;
+    top: 147px;
+
+    background: #FFFFFF;
+
+}
+
 footer {
     padding: 1em 0;
 }
@@ -118,19 +129,6 @@ footer {
     order: 3;
     flex-grow: 0;
 }
-
-#LogoHeader{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 22px;
-    top: 147px;
-
-    background: #FFFFFF;
-
-}
-
-
 
 #inputSearch{
     position: absolute;
