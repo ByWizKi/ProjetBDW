@@ -21,6 +21,7 @@ $connexion = getConnexionBD();
     <?php include('static/header.php'); ?>
     <div id="divCentral">
 		<?php include('static/menu.php'); ?>
+		<?php include('static/recherche.php')?>
 		<main>
 		<?php
 		$controleur = 'controleurAccueil'; 
