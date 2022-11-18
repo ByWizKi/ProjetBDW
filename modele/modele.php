@@ -31,23 +31,20 @@ function nombreElementTable($connexion, $nomTable){
 }
 
 function topElementChanson($connexion){
-
-	$requete = "SELECT titreChanson AS titre From Chanson INNER JOIN FichierAudio ON Chanson.identifiantChanson = FichierAudio.identifiantChanson ORDER BY FichierAudio.playCount ASC";
+	$requete = "SELECT titreChanson AS titre From Chanson INNER JOIN FichierAudio ON Chanson.identifiantChanson = FichierAudio.identifiantChanson ORDER BY FichierAudio.playCount DESC";
 	$res = mysqli_query($connexion, $requete);
 	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $resFinal;
 }
 
 function topElementGenre($connexion){
-
 	$requete = "SELECT nomGenre AS nom FROM Genre NATURAL JOIN APourGenre NATURAL JOIN Chanson NATURAL JOIN FichierAudio GROUP BY Genre.nomGenre ORDER BY FichierAudio.playCount ASC";
 	$res = mysqli_query($connexion, $requete);
 	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
-	return $res;
+	return $resFinal;
 }
 
 function topElementAlbum($connexion){
-
 	$requete = "SELECT titreAlbum FROM Album NATURAL JOIN Chanson NATURAL JOIN FichierAudio GROUP BY titreAlbum ORDER BY FichierAudio.playCount ASC";
 	$res = mysqli_query($connexion, $requete);
 	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
@@ -60,7 +57,7 @@ function informationTable($connexion, $nomTable){
 		$requete = "SELECT titreChanson nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio";
 	}
 	elseif($nomTable = "Groupe"){
-		$requete = "SELECT nomGroupe, COUNT(titreChanson), dateCreationGroupe FROM Groupe NATURAL JOIN Chanson GROUP BY nomGroupe";
+		$requete = "SELECT nomGroupe, COUNT(titreChanson)AS nb_Groupe, dateCreationGroupe FROM Groupe NATURAL JOIN Chanson GROUP BY nomGroupe";
 	}
 
 	elseif($nomTable = "Genre"){
@@ -68,7 +65,7 @@ function informationTable($connexion, $nomTable){
 	}
 
 	elseif($nomTable = "Album"){
-		$requete = "SELECT titreAlbum, COUNT(identifiantchanson), dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson GROUP BY titreAlbum";
+		$requete = "SELECT titreAlbum, COUNT(identifiantchanson)AS nb_Album, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson GROUP BY titreAlbum";
 	}
 	else{
 		$requete = "SELECT * FROM $nomTable";
