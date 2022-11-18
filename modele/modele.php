@@ -18,6 +18,7 @@ function deconnectBD($connexion) {
 //nombre d'element dans une table
 
 function nombreElementTable($connexion, $nomTable){
+	$nomTable = mysqli_real_escape_string($connexion, $nomTable);
 	$requete = "SELECT COUNT(*) AS nbElementTable From $nomTable";
 	$res = mysqli_query($connexion, $requete);
 	if ($res != true){
@@ -54,6 +55,7 @@ function topElementAlbum($connexion){
 }
 
 function informationTable($connexion, $nomTable){
+	$nomTable = mysqli_real_escape_string($connexion, $nomTable);
 	if ($nomTable = "Chanson"){
 		$requete = "SELECT titreChanson nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio";
 	}
