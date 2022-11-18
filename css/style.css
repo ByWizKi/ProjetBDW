@@ -7,10 +7,10 @@
 
 #LogoHeader{
     position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 22px;
-    top: 147px;
+    width: 6em;
+    height: 6em;
+    left: 1.2em;
+    top: 9.5em;
 
     background: #FFFFFF;
 
@@ -22,13 +22,13 @@
     position: center;
     justify-content: center;
     margin: auto;
-    margin-top: 30px;
-    width: 1300px;
-    height: 80px;
+    margin-top: 2.4em;
+    width: 68em;
+    height: 5.8;
 
     background: #FFE000;
-    border: 1px solid #000000;
-    border-radius: 10px;
+    border: 0.06em solid #000000;
+    border-radius: 0.6em;
 }
 
 #textMenu{
@@ -36,15 +36,16 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px;
-    gap: 70px;
+    padding: 0.1em;
+    gap: 4.2em;
     mix-blend-mode: normal;
-    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 0.24em 0.96em rgba(0, 0, 0, 0.25));
+    width: 75%;
 }
 
 #t1M{
     width: 210px;
-    height: 64.38px;
+    height: 3.86px;
 
     font-family: 'Lato';
     font-style: normal;
@@ -128,32 +129,29 @@
 
 #divSearch{
     position: absolute;
-    width: 973px;
-    height: 100px;
-    left: 400.5px;
+    width: 58.4em;
+    height: 6em;
+    left: 28em;
     top: 146px;
-
+    align-items: center;
     background: #494848;
     border-radius: 10px;
 }
 
 #inputSearch{
-    position: absolute;
-    width: 280px;
-    height: 80px;
-    left: 130px;
+    height: 3em;
     border: none;
+    border-radius: 0.6em;
     font-family: 'Lato';
     font-style: italic;
     font-weight: 400;
-    font-size: 33px;
+    font-size: 1.4em;
     line-height: 43px;
-    
-    display: flex;
     letter-spacing: 0.3em;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #494848;
+    width: 65%;
 }
 
 #selectFiltres{
@@ -183,3 +181,24 @@
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+
+#line{
+
+    position: absolute;
+    width: 60px;
+    height: 0px;
+    left: 109.87px;
+    top: 20px;
+
+    mix-blend-mode: normal;
+    border: 4px solid #FFFDFD;
+    transform: rotate(91.79deg);
+
+}
+#loupe{
+bottom : 0px;
+    
+}
+
+
