@@ -33,11 +33,7 @@ function topElementChanson($connexion){
 
 	$requete = "SELECT titreChanson AS titre From Chanson INNER JOIN FichierAudio ON Chanson.identifiantChanson = FichierAudio.identifiantChanson ORDER BY FichierAudio.playCount ASC";
 	$res = mysqli_query($connexion, $requete);
-	$sortRow = mysqli_fetch_all($res, MYSQLI_ASSOC);
-	$resFinal = array();
-	for($i = 0; $i < 5; $i+=1){
-		$resFinal[$i] = $sortRow[$i]; 
-	}
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $resFinal;
 }
 
@@ -45,23 +41,15 @@ function topElementGenre($connexion){
 
 	$requete = "SELECT nomGenre AS nom FROM Genre NATURAL JOIN APourGenre NATURAL JOIN Chanson NATURAL JOIN FichierAudio GROUP BY Genre.nomGenre ORDER BY FichierAudio.playCount ASC";
 	$res = mysqli_query($connexion, $requete);
-	$sortRow = mysqli_fetch_all($res, MYSQLI_ASSOC);
-	$resFinal = array();
-	for($i = 0; $i < 5; $i+=1){
-		$resFinal[$i] = $sortRow[$i]; 
-	}
-	return $resFinal;
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $res;
 }
 
 function topElementAlbum($connexion){
 
 	$requete = "SELECT titreAlbum FROM Album NATURAL JOIN Chanson NATURAL JOIN FichierAudio GROUP BY titreAlbum ORDER BY FichierAudio.playCount ASC";
 	$res = mysqli_query($connexion, $requete);
-	$sortRow = mysqli_fetch_all($res, MYSQLI_ASSOC);
-	$resFinal = array();
-	for($i = 0; $i < 5; $i+=1){
-		$resFinal[$i] = $sortRow[$i]; 
-	}
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $resFinal;
 }
 
