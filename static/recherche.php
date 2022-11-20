@@ -1,7 +1,21 @@
-<div id="divSearch">
-    <img src="img/searchIcon" alt="">
-    <input id ="inputSearch" type="search" placeholder="Recherche">
-    <label for="selectFiltres" id="selectFiltreText">Filtres</label>
-    <select name="selectFiltre" id="selectFiltres">
-    </select>
-</div>
+<main>
+    <div id="divSearch">
+        <form method="post" action="#">
+            <img src="" alt="" id="loupeSearch">
+            <input type="text" id="InputSearch" placeorder="Recherche" required>
+            <input type="submit" id="InputValidate" value="OK">
+            
+            <img src="" alt="" id="buttonSelectSearch">
+            <label for="selectSearch">Filtres</label>
+            <select name="selectSearch" id="selectSearch" required>
+                <option value="Chanson">Chanson</option>
+                <option value="Groupe">Groupe</option>
+                <option value="Musicien">Musicien</option>
+                <option value="Genre">Genre</option>
+                <option value="Album">Album</option>
+            </select>
+        </form>
+        <button onclick = "index.php?page=InfoRecherche">Recherche</button>
+    </div>
+</main>
+

@@ -127,62 +127,6 @@
 }
 
 /* css barre de recherhe */
-#divSearch{
-    position: absolute;
-    width: 973px;
-    height: 100px;
-    left: 400.5px;
-    top: 146px;
 
-    background: #494848;
-    border-radius: 10px;
-}
-
-#inputSearch{
-    position: absolute;
-    width: 280px;
-    height: 80px;
-    left: 130px;
-    border: none;
-    font-family: 'Lato';
-    font-style: italic;
-    font-weight: 400;
-    font-size: 33px;
-    line-height: 43px;
-    
-    display: flex;
-    letter-spacing: 0.3em;
-    color: #FFFFFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: #494848;
-}
-
-#selectFiltres{
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    left: 682.5px;
-    top: 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-#selectFiltreText{
-    position: absolute;
-    width: 163px;
-    height: 43px;
-    left: 755px;
-    top: 29px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 43px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.3em;
-    color: #FFFFFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
 
 /* css Acueill */
