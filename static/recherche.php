@@ -15,7 +15,6 @@
                 <option value="Album">Album</option>
             </select>
         </form>
-        <button onclick = "index.php?page=InfoRecherche">Recherche</button>
     </div>
 </main>
 
