@@ -107,6 +107,4 @@ function recherche($connexion, $nomTable, $texteRecherche) {
 	return $rechercheTable;
 
 }
-
-
 ?>
