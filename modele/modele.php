@@ -115,11 +115,33 @@ function getNomGroupe($connexion){
 	return $resFinal;
 }
 
-function getGenre($connexion){
+function getNomGenre($connexion){
 	$requete = "SELECT DISTINCT nomGenre FROM Genre;";
 	$res = mysqli_query($connexion, $requete);
 	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $resFinal;
 }
 
+function chansonExiste($connexion, $titre, $version, $groupe){
+	echo "je suis dans la fonction";
+	$version = strtoupper($version);
+	$requete = 'SELECT titreChanson FROM CHANSON NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson = '.$titre.' AND libelleVersion = '.$version.' AND nomGroupe = '.$groupe.';';
+	$res = mysqli_query($connexion, $requete);
+	echo $res;
+	echo "apres la requete";
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	if(count($resFinal) == 0){
+		echo"vide";
+	}
+	else{
+		echo"non";
+	}
+}
+
+function insertInto($connexion, $titre, $groupe, $genre, $version, $duree, $dateSortie){
+	$titre = mysqli_real_escape_string($connexion, $titre);
+	$groupe = mysqli_real_escape_string($connexion, $groupe);
+	$genre = mysqli_real_escape_string($connexion, $genre);
+	$version = mysqli_real_escape_string($connexion, $version);
+}
 ?>
