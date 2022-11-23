@@ -4,7 +4,6 @@
             <img src="" alt="" id="loupeSearch">
             <input type="text" id="InputSearch" placeorder="Recherche" required>
             <input type="submit" id="InputValidate" value="OK">
-            
             <img src="" alt="" id="buttonSelectSearch">
             <label for="selectSearch">Filtres</label>
             <select name="selectSearch" id="selectSearch" required>

@@ -103,8 +103,23 @@ function recherche($connexion, $nomTable, $texteRecherche) {
 		$requete = "SELECT titreAlbum, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson WHERE titreAlbum LIKE \'%'.$texteRecherche.'%\'GROUP BY titreAlbum;";
 	}
 	$res = mysqli_query($connexion, $requete);
-	$rechercheTable = mysqli_fetch_all($res, MYSQL_ASSOC);
+	$rechercheTable = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $rechercheTable;
 
 }
+
+function getNomGroupe($connexion){
+	$requete = "SELECT identifiantGroupe, nomGroupe FROM Groupe;";
+	$res = mysqli_query($connexion, $requete);
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $resFinal;
+}
+
+function getGenre($connexion){
+	$requete = "SELECT DISTINCT nomGenre FROM Genre;";
+	$res = mysqli_query($connexion, $requete);
+	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $resFinal;
+}
+
 ?>
