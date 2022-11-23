@@ -21,13 +21,11 @@ function nombreElementTable($connexion, $nomTable){
 	$nomTable = mysqli_real_escape_string($connexion, $nomTable);
 	$requete = "SELECT COUNT(*) AS nbElementTable From $nomTable;";
 	$res = mysqli_query($connexion, $requete);
-	if ($res != true){
-		$row = mysqli_fetch_row($res);
-		return $row['nb'];
-
+	if ($res != FALSE){
+		$row = mysqli_fetch_assoc($res);
+		return $row['nbElementTable'];
 	} 
 	return "Erreur la table n'existe pas";
-
 }
 
 function topElementChanson($connexion){
@@ -78,29 +76,31 @@ function informationTable($connexion, $nomTable){
 
 function recherche($connexion, $nomTable, $texteRecherche) {
 	$texteRecherche = mysqli_real_escape_string($connexion, $texteRecherche);
+
 	if ($nomTable == 'Chanson'){
-		$requete = "SELECT titreChanson, nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson LIKE \'%'.$texteRecherche.'%\';";
+		
+		$requete = 'SELECT titreChanson, nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson LIKE \'%'.$texteRecherche.'%\';';
 
 	}
 
 	elseif($nomTable == 'Groupe'){
-		$requete = "SELECT nomGroupe, COUNT(titreChanson)AS nb_Chanson, dateCreationGroupe FROM Groupe NATURAL JOIN Chanson WHERE nomGroupe LIKE \'%'.$texteRecherche.'%\' GROUP BY nomGroupe;";
+		$requete = 'SELECT nomGroupe, COUNT(titreChanson)AS nb_Chanson, dateCreationGroupe FROM Groupe NATURAL JOIN Chanson WHERE nomGroupe LIKE \'%'.$texteRecherche.'%\' GROUP BY nomGroupe;';
 
 	}
 
 	elseif($nomTable == 'Musicien'){
-		$requete = "SELECT prenomMusicien, nomMusicien, nomScene FROM Musicien WHERE nomScene LIKE \'%'.$texteRecherche.'%\';";
+		$requete = 'SELECT prenomMusicien, nomMusicien, nomScene FROM Musicien WHERE nomScene LIKE \'%'.$texteRecherche.'%\';';
 
 	}
 
 	elseif($nomTable == 'Genre'){
-		$requete = "SELECT DISTINCT nomGenre FROM Genre WHERE nomGenre LIKE \'%'.$texteRecherche.'%\';";
+		$requete = 'SELECT DISTINCT nomGenre FROM Genre WHERE nomGenre LIKE \'%'.$texteRecherche.'%\';';
 
 	}
 
 	elseif($nomTable == 'Album'){
 
-		$requete = "SELECT titreAlbum, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson WHERE titreAlbum LIKE \'%'.$texteRecherche.'%\'GROUP BY titreAlbum;";
+		$requete = 'SELECT titreAlbum, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson WHERE titreAlbum LIKE \'%'.$texteRecherche.'%\'GROUP BY titreAlbum;';
 	}
 	$res = mysqli_query($connexion, $requete);
 	$rechercheTable = mysqli_fetch_all($res, MYSQLI_ASSOC);

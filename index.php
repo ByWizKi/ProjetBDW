@@ -18,7 +18,7 @@ $connexion = getConnexionBD();
     <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body id="mainBody">
-    <?php include('static/header.php'); ?>
+    <?php //include('static/header.php'); ?>
     <div id="divCentral">
 		<?php include('static/menu.php'); ?>
 		<?php include('static/recherche.php')?>

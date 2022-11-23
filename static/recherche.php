@@ -1,9 +1,9 @@
 <main>
     <div id="divSearch">
-        <form method="post" action="#">
+        <form method="post" action="index.php?page=InfoRecherche">
             <img src="" alt="" id="loupeSearch">
-            <input type="text" id="InputSearch" placeorder="Recherche" required>
-            <input type="submit" id="InputValidate" value="OK">
+            <input type="text" name="inputSearch" id="inputSearch" placeorder="Recherche" required>
+            <input type="submit" name="inputValidate" id="inputValidate" value="OK">
             <img src="" alt="" id="buttonSelectSearch">
             <label for="selectSearch">Filtres</label>
             <select name="selectSearch" id="selectSearch" required>
@@ -14,6 +14,7 @@
                 <option value="Album">Album</option>
             </select>
         </form>
+        
     </div>
 </main>
 
