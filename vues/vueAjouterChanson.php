@@ -28,9 +28,6 @@
 
             <label for="inputDate">Date De Sortie</label>
             <input type="date" name="inputDate" id="inputDate">
-
-            <label for="inputCheckBox">Date Aujourd'hui</label>
-            <input type="checkbox" id="inputCheckBox" name="inputCheckBox">
             
             <input type="submit" value="Ajouter" id="validationAjoutChanson" name="validationAjoutChanson">
         </form>
