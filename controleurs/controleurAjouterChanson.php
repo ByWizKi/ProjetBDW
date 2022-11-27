@@ -17,7 +17,7 @@ if(isset($_POST['validationAjoutChanson']))
     $inputDuree = $_POST['inputTime'];
     $inputDateSortie = $_POST['inputDate'];
     $insertionTable = insertINTO($connexion, $inputTitre, $inputGroupe, $inputGenre, $inputVersion, $inputDuree, $inputDateSortie);
-    if($insertionTable == TRUE)
+    if($insertionTable == true)
     {
         $message = "Chanson Ajouter !";
     }

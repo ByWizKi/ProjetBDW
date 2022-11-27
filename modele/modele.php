@@ -116,7 +116,7 @@ function getNomGroupe($connexion){
 }
 
 function getNomGenre($connexion){
-	$requete = "SELECT DISTINCT nomGenre FROM Genre;";
+	$requete = "SELECT DISTINCT identifiantGenre, nomGenre FROM Genre;";
 	$res = mysqli_query($connexion, $requete);
 	$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $resFinal;
@@ -124,11 +124,12 @@ function getNomGenre($connexion){
 
 function chansonExiste($connexion, $titre, $version, $groupe){
 	$version = strtoupper($version);
-	$requete = "SELECT titreChanson FROM Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson = '$titre' AND libelleVersion = '$version' AND nomGroupe = '$groupe'";
+	$requete = "SELECT titreChanson FROM Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson = '$titre' AND libelleVersion = '$version' AND identifiantGroupe = $groupe;";
 	$res = mysqli_query($connexion, $requete);
 	if ($res != FALSE){
-		$resFinal = mysqli_fetch_assoc($res);
+		$resFinal = mysqli_fetch_all($res, MYSQLI_ASSOC);
 		if(count($resFinal) == 0){
+			
 			return true;
 		}
 		else{
@@ -138,38 +139,46 @@ function chansonExiste($connexion, $titre, $version, $groupe){
 	return -1;
 }
 
-function insertInto($connexion, $titre, $groupe, $genre, $version, $duree, $dateSortie){
-	$titre = mysqli_real_escape_string($connexion, $titre);
-	$groupe = mysqli_real_escape_string($connexion, $groupe);
-	$genre = mysqli_real_escape_string($connexion, $genre);
+
+function insertInto($connexion, $titre, $idGroupe, $idGenre, $version, $duree, $dateSortie){
+	//Convertion des donnees du formaulaire
+	$titre = mysqli_real_escape_string($connexion, $titre); 
 	$version = mysqli_real_escape_string($connexion, $version);
 	$version = strtoupper($version);
-	$testChansonExist = chansonExiste($connexion, $titre, $version, $groupe);
-	if($testChansonExist==FALSE){
-		return -1;
+	$testChansonExist = chansonExiste($connexion, $titre, $version, $idGroupe);
+	if($testChansonExist==false){
+		return false;//impossible d'ajouter la chanson
 	}
 
 	else{
-		//recuperation du groupe qui a composer la chanson
-		$requete1 = "SELECT identifiantGroupe FROM Groupe WHERE '$groupe' = nomGroupe";
-		$resReq1 = mysqli_query($connexion, $requeteGroupe);
-		if ($Req1 != FALSE){
-			$identifaintGroupe = mysqli_fetch_assoc($res);
-			$identifiantGroupeForChanson = $identifiantGroupe['identifiantGroupe'];
-		}
-		$requeteForChanson = "INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe) VALUES (NULL, '$titre', '$dateSortie', '$identifiantGroupeForChanson');";
-		
-		
-		$nomFichier = $titre^".mp3";
-		echo$nomFichier;
-		//recuperation de l'identifiant de la nouvelle chanson ajouter
-		$requete2 = "SELECT identifiantChanson FROM Chanson WHERE '$titre' = titreChanson ORDER BY DESC identifiantChanson";
-		$resReq2= mysqli_query($connexion, $requeteChanson);
-		if ($Req1 != FALSE){
-			$identifiantChanson = mysqli_fetch_all($res, MYSQL_ASSOC);
-			$identifiantChansonLast[1]['identifiantChanson'];
+		//Ajout de la chanson dans la table chanson
+		$requeteForChanson = "INSERT INTO Chanson(identifiantChanson, titreChanson, dateCreationChanson, identifiantGroupe, identifiantLieux) VALUES (NULL, '$titre', '$dateSortie', $idGroupe, NULL);";
+		$res1 = mysqli_query($connexion, $requeteForChanson);
+		//Convertion du nom du fichier
+		$nomFichier = $titre.'.mp3';
+
+		//Recuperation de l'identifiant de la nouvelle chanson ajouter
+		$requeteChanson = "SELECT identifiantChanson AS id FROM Chanson WHERE '$titre' = titreChanson ORDER BY identifiantChanson DESC;";
+		$res= mysqli_query($connexion, $requeteChanson);
+		if ($res != FALSE){
+			$lastChanson = mysqli_fetch_row($res);
 		} 
-		$requeteForFichierAudio = "INSERT INTO FichierAudio (numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCout, descriptionVerison, identifiantChanson) VALUES (NULL, $version, $nomFichier, $identifaintGroupe, $duree, $dateSortie, 0, 0, $identifiantChansonLast)";
+
+		//Ajout du genre de la chanson
+		$requeteForApourGenre = "INSERT INTO APourGenre (identifiantGenre, identifiantChanson) VALUES ($idGenre, $lastChanson[0]);";
+		$res2 = mysqli_query($connexion, $requeteForApourGenre);
+
+		//Ajout de la version dans la table ficher audio
+		$requeteForFichierAudio = "INSERT INTO FichierAudio (numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (NULL, '$version', '$nomFichier', '00:$duree', '$dateSortie', 0, 0, NULL, $lastChanson[0]);";
+		$res3 = mysqli_query($connexion, $requeteForFichierAudio);
+
+		if($res1 == true and $res2 == true and $res3 == true ){
+			return true;// les requetes on ete transmise et excuter avec succes
+		}
+
+		else{
+			return false;
+		}
 
 	}
 }

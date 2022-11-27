@@ -29,3 +29,8 @@
         <a href="index.php?page=InfoGenre">Voir Tout</a>
     </div>
 </main>
+<!-- 
+    On peut voir dans les boucles differents chiffre mais normalement 
+le chiffre est 5 on fait un top 5 des ... plus ecoutees or ici nous avons pas assez de donnees 
+pour afficher les 5 mais le programme marche pour 5 il suffit de changer la valeur de la boucle
+!>
