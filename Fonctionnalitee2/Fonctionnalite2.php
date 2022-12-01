@@ -2,7 +2,7 @@
 
 //connexion aux bases de donnees
 $connexionBD = mysqli_connect('localhost', 'p2207446', 'Seduce65Maybe', 'dataset');
-$connexion = mysqli_connect('localhost', 'p2207446', 'Seduce65Maybe', 'p2207446');
+$connexion = mysqli_connect('localhost', 'root', '', 'fonctionnalite2');
 
 //recuperation des donnees de la table songs
 $requeteForSong = "SELECT * FROM songs100";

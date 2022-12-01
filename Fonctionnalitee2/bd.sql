@@ -103,7 +103,7 @@ CREATE TABLE FaitParti(
    roleGroupe VARCHAR(255),
    dateEntrerGroupe DATE,
    dateSortieGroupe DATE,
-   membreFondateur LOGICAL,
+   membreFondateur INT,
    PRIMARY KEY(identifiantGroupe, identifiantMusicien),
    FOREIGN KEY(identifiantGroupe) REFERENCES Groupe(identifiantGroupe),
    FOREIGN KEY(identifiantMusicien) REFERENCES Musicien(identifiantMusicien)
@@ -127,7 +127,7 @@ CREATE TABLE Produit(
    UNIQUE(dateProduction),
    FOREIGN KEY(identifiantGroupe) REFERENCES Groupe(identifiantGroupe),
    FOREIGN KEY(identifiantLieux) REFERENCES Lieux(identifiantLieux),
-   FOREIGN KEY(identifiantAlbum) REFERENCES AlbumLives(identifiantAlbum)
+   FOREIGN KEY(identifiantAlbum) REFERENCES Album(identifiantAlbum)
 );
 
 CREATE TABLE Featuring(
