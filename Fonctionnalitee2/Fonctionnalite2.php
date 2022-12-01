@@ -75,11 +75,21 @@ function albumExist($connexion, $nomGroupe, $titreAlbum, $compilation){
     return -1;
 }
 
+function AjoutAlbum($connexion, $titreChanson, $nomGroupe, $titreAlbum, $compilation, $dateSortieAlbum){
+    if(albumExist($connexion, $nomGroupe, $titreAlbum, $compilation) == true){
+        return "l'Album est deja creer";
+    }
+    if()
+
+
+}
+
 function main($connexion, $datas){
     foreach($datas as $data){
         AjoutGroupe($connexion, $data['artist']);
     }   
 }
+
 
 
 ?>
