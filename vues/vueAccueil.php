@@ -26,7 +26,7 @@
 	            <li><?= $topGenre[$i]['nom']?></li>
         <?php }?>
         <label for="boutonVoirToutTopGenre"></label>
-        <a href="index.php?page=InfoGenre">Voir Tout</a>
+        <a href="index.php?page=InfoGenre" id="VoirTout">Voir Tout</a>
     </div>
 </main>
 <!-- 

@@ -18,9 +18,11 @@
 
             <label for="inputMostPlay">Les plus jouees</label>
             <input type="checkbox" name="inputMostPlay" id="inputMostPlay">
+            <input type="range" min=10 max=100 id="pourcPref1" name="pourcPref1">
 
             <label for="inputLessersSkip">Les moins skip</label>
             <input type="checkbox" name="inputLessersSkip" id="inputLessersSkip">
+            <input type="range" min=10 max=100 id="pourcPref1" name="pourcPref1">
 
             <input type="submit" value="Ajouter" id="validationAjoutPlaylist" name="validationAjoutPlaylist">
         </form>
