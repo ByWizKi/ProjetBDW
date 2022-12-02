@@ -1,10 +1,10 @@
-#mainBody {
+#mainBody{
     position: relative;
     background: #252525;
 
 }
 
-#LogoHeader {
+#LogoHeader{
     position: absolute;
     width: 6em;
     height: 6em;
@@ -22,7 +22,7 @@
     justify-content: center;
     margin: auto;
     margin-top: 1.8em;
-    width: 78em;
+    width: 80%;
     height: 4.8em;
 
     background: #FFE000;
@@ -30,7 +30,8 @@
     border-radius: 0.6em;
 }
 
-#textMenu {
+#textMenu{
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -40,6 +41,283 @@
     mix-blend-mode: normal;
     filter: drop-shadow(0px 0.24em 1em rgba(0, 0, 0, 0.25));
 }
+
+#t1M{
+    width: 12.6em;
+    height: 3.8em;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2em;
+    line-height: 2.6em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+
+    color: #252525;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+#t2M{
+    width: 12.6em;
+    height: 4.8em;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2em;
+    line-height: 2.6em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+
+    color: #252525;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+#t3M{
+    width: 19.2em;
+    height: 4.8em;
+   
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2em;
+    line-height: 2.6em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+   
+    color: #252525;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+#t4M{
+    width: 12.6em;
+    height: 4.8em;
+   
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2em;
+    line-height: 2.6em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+   
+    color: #252525;
+   
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+}
+
+/* css barre de recherhe */
+#divSearch{
+    width: 70%;
+    height: 7%;
+    left: 28em;
+    margin-top: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
+    top: 8.76em;
+    align-items: center;
+    background: #494848;
+    border-radius: 0.6em;
+}
+
+#inputSearch{
+    height: 3em;
+    border: none;
+    border-radius: 0.6em;
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.4em;
+    line-height: 2.6em;
+    letter-spacing: 0.3em;
+    color: #FFFFFF;
+    text-shadow: 0px 0.24em 0.24em rgba(0, 0, 0, 0.25);
+    background-color: #494848;
+    width: 65%;
+}
+
+#selectFiltres{
+    position: absolute;
+    width: 3.6em;
+    height: 3.6em;
+    left: 40.95em;
+    top: 1.2em;
+    filter: drop-shadow(0px 0.24em 0.24em rgba(0, 0, 0, 0.25));
+}
+
+#selectFiltreText{
+    position: absolute;
+    width: 9.8em;
+    height: 2.6em;
+    left: 45.3em;
+    top: 1.74em;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.2em;
+    line-height: 2.58em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+    color: #FFFFFF;
+    text-shadow: 0px 0.24em 0.24em rgba(0, 0, 0, 0.25);
+}
+
+
+#line{
+
+    position: absolute;
+    width: 3.6em;
+    height: 0px;
+    left: 6.6;
+    top: 1.2em;
+
+    mix-blend-mode: normal;
+    border: 0.24em solid #FFFDFD;
+    transform: rotate(91.79deg);
+
+}
+#loupe{
+    bottom : 0px;
+   
+}
+
+/* css Acueill */
+head, body{
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#divTopGenre, #divTopAlbum, #divTopMusique{
+    width: 70%;
+    min-height: 40em;
+    margin-right: 15%;
+    margin-left: 15%;
+    height: auto;
+    border: none;
+    background: #494848;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    border-radius: 0.6em;
+}
+
+#textTopAlbum, #textTopMusique, #textTopGenre{
+    width: 50%;
+    margin-left: 35%;
+   
+}
+
+#VoirTout{
+    border: none;
+    margin-left: 82%;
+    height: auto;
+    width: 10%;
+    background: #FFE000;
+    color: #000000;
+    border-radius: 0.3em;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 2.6em;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+    margin-top: 40%;
+    margin-bottom: 2%;
+
+}
+
+#validationAjoutChanson{
+    border: none;
+    margin-left: 85%;
+    height: auto;
+    width: 10%;
+    background: #FFE000;
+    color: #000000;
+    border-radius: 0.3em;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 2.6em;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+    margin-top: 40%;
+    margin-bottom: 2%;
+}
+footer{
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    height: 10%;
+    border: none;
+    background: #494848;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    border-radius: 0.6em;
+   
+}
+#divAjouterChanson{
+   
+    width: 70%;
+    min-height: 40em;
+    margin-right: 15%;
+    margin-left: 15%;
+    height: auto;
+    border: none;
+    background: #494848;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    border-radius: 0.6em;
+}
+
+#divAjouterChanson1, #divAjouterChanson2{
+position: relative;
+   
+   
+}
+
+#selectGenre, #selectGroupe, #inputTitre, #inputVersion, #inputTime, #inputDate, #inputCheckBox
+{
+    position: relative;
+    width: auto;
+    align-items: center;
+    height: auto;
+    border: none;
+    background: #b6b4b4;
+    box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
+    border-radius: 0.6em;
+}
+
+li{
+    margin-left: 5%;
+}
+
 
 /* css barre de recherhe */
 

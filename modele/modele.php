@@ -182,4 +182,43 @@ function insertInto($connexion, $titre, $idGroupe, $idGenre, $version, $duree, $
 
 	}
 }
+
+function randomName($connexion, $genre ){
+	// recupe de tout les noms est identifant dans l'ordre dec
+	$requete = "SELECT identifiantPlaylist FROM Playlist ORDER BY identifiantPlaylist DESC";
+	$res = mysqli_query($connexion, $requete);
+	$resultat = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	if(count($resultat) == 0){
+		$lastID = '1';
+	}
+	else{
+		$lastID = settype($resultat[0]['identifiantPlaylist'], int);
+		$lastID = $lastID + 1;
+		$lastID = settype($lastID, 'string');
+	}
+
+	// test si genre est null 
+	if($genre == NULL){
+		$nomPlaylist = "Playlist".$genre.$lastID;
+		echo$nomPlaylist;
+		return $nomPlaylist;
+	}
+	else{
+		$nomPlaylist = "Playlist".$lastID;
+		echo $nomPlaylist;
+		return $nomPlaylist;
+	}
+
+	// 
+
+
+}
+
+function createPlaylist($connexion, $nomPlaylist, $dateSortie){
+	// test si le nom == null
+
+	// ajout de la playlist dans le bd
+
+
+}
 ?>

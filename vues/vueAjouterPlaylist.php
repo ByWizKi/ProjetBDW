@@ -16,13 +16,12 @@
             <?php }?>
             </select>
 
-            <label for="inputMostPlay">Les plus jouees</label>
-            <input type="checkbox" name="inputMostPlay" id="inputMostPlay">
-            <input type="range" min=10 max=100 id="pourcPref1" name="pourcPref1">
-
-            <label for="inputLessersSkip">Les moins skip</label>
-            <input type="checkbox" name="inputLessersSkip" id="inputLessersSkip">
-            <input type="range" min=10 max=100 id="pourcPref1" name="pourcPref1">
+            <label for="selectPref">Préférence</label>
+            <select name="selectPref" id="selectPref">
+                <option value="MorePlayCount">Les plus jouees</option>
+                <option value="LessSkipCount">Les moins jouees</option>
+            </select>
+            <input type="range" min=10 max=100 name="pourcPref" id="pourcPref">
 
             <input type="submit" value="Ajouter" id="validationAjoutPlaylist" name="validationAjoutPlaylist">
         </form>

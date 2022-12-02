@@ -28,7 +28,7 @@ $connexion = getConnexionBD();
 		$vue = 'vueAccueil'; 
 		if(isset($_GET['page'])) {
 			$nomPage = $_GET['page'];
-			if(isset($routes[$nomPage])) { // si la page existe dans le tableau des routes, on la charge
+			if(isset($routes[$nomPage])) {
 				$controleur = $routes[$nomPage]['controleur'];
 				$vue = $routes[$nomPage]['vue'];
 			}

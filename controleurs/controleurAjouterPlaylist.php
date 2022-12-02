@@ -2,6 +2,7 @@
 //message d'erreur si il n'y a aucune info de table disponible
 $message="";
 
+$test = randomName($connexion, 'POP');
 
 //recuperation des Genres
 $nomGenre = getNomGenre($connexion);
@@ -30,25 +31,17 @@ if(isset($_POST['validationAjoutPlaylist']))
             $genrePlaylist = NULL;
         }
 
-        // on regarde si on veut les chanson les plus joue 
-        if(!empty($_POST['inputMostPlay'])){
-            $genrePlaylist  = true;
+        // on regarde si on veut les chanson les plus joue ou les moins skip
+        if(!empty($_POST['selectPref'])){
+            $selectPref = mysqli_real_escape_string($connexion, trim($_POST['selectPref']));
+            if ($selectPref == 'MorePlayCount' || $selectPref == 'LessSkipCount'){
+                // on recup le pourcentage
+                $percPref = $_POST['pourcPref'];
+            }
+            
+            else{
+                $selectPref = NULL;
+            }
         }
-        else{
-            $genrePlaylist = false;
-        }
-
-        // on regarde si on veut les chanson les plus skip
-        if(!empty($_POST['inputLessersSkip'])){
-            $genrePlaylist  = true;
-        }
-        else{
-            $genrePlaylist = false;
-        }
-
-        // 
-
-
-
 }
 ?>
