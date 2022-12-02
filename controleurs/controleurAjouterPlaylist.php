@@ -2,8 +2,8 @@
 //message d'erreur si il n'y a aucune info de table disponible
 $message="";
 
-$test = randomName($connexion, 'POP');
 
+$test = insertMusicIntoPlaylist($connexion, 8, NULL, NULL, 'MorePlayCount', 60);
 //recuperation des Genres
 $nomGenre = getNomGenre($connexion);
 
@@ -36,12 +36,14 @@ if(isset($_POST['validationAjoutPlaylist']))
             $selectPref = mysqli_real_escape_string($connexion, trim($_POST['selectPref']));
             if ($selectPref == 'MorePlayCount' || $selectPref == 'LessSkipCount'){
                 // on recup le pourcentage
-                $percPref = $_POST['pourcPref'];
+                $percPref = $_POST['percPref'];
             }
             
             else{
                 $selectPref = NULL;
             }
         }
+
+        
 }
 ?>

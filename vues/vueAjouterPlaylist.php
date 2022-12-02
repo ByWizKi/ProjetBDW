@@ -21,7 +21,7 @@
                 <option value="MorePlayCount">Les plus jouees</option>
                 <option value="LessSkipCount">Les moins jouees</option>
             </select>
-            <input type="range" min=10 max=100 name="pourcPref" id="pourcPref">
+            <input type="range" min=10 max=100 name="percPref" id="percPref">
 
             <input type="submit" value="Ajouter" id="validationAjoutPlaylist" name="validationAjoutPlaylist">
         </form>

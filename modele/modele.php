@@ -191,34 +191,190 @@ function randomName($connexion, $genre ){
 	if(count($resultat) == 0){
 		$lastID = '1';
 	}
-	else{
-		$lastID = settype($resultat[0]['identifiantPlaylist'], int);
+
+	else
+	{
+		$lastID = $resultat[0]['identifiantPlaylist'];
 		$lastID = $lastID + 1;
-		$lastID = settype($lastID, 'string');
 	}
 
 	// test si genre est null 
-	if($genre == NULL){
-		$nomPlaylist = "Playlist".$genre.$lastID;
-		echo$nomPlaylist;
-		return $nomPlaylist;
-	}
-	else{
-		$nomPlaylist = "Playlist".$lastID;
-		echo $nomPlaylist;
+	if($genre != NULL)
+	{
+		$nomPlaylist = "Playlist"." ".$genre." ".$lastID;
 		return $nomPlaylist;
 	}
 
-	// 
-
-
+	else
+	{
+		$nomPlaylist = "Playlist"." ".$lastID;
+		return $nomPlaylist;
+	}
 }
 
-function createPlaylist($connexion, $nomPlaylist, $dateSortie){
+function namePlaylistExiste($connexion, $nomPlaylist){
+	$requete = "SELECT nomPlaylist FROM Playlist WHERE '$nomPlaylist' = nomPlaylist";
+	$res = mysqli_query($connexion, $requete);
+	$resultat = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	if(count($resultat) == 0){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function createPlaylist($connexion, $nomPlaylist, $genrePlaylist){
 	// test si le nom == null
+	if ($nomPlaylist == NULL)
+	{
+		$nomPlaylist = randomName($connexion, $genrePlaylist);
+	}
+
+	// test de si le nom de la playlist existe
+	if(namePlaylistExiste($connexion, $nomPlaylist) == true){
+		return NULL;
+	}
 
 	// ajout de la playlist dans le bd
+	$requete = "INSERT INTO Playlist (identifiantPlaylist, nomPlaylist) VALUES (NULL, '$nomPlaylist')";
+	$res = mysqli_query($connexion, $requete);
+	if($res == true){
+		//recup l'identifiant de la derniere playlist creer
 
 
+		// ajout des musique dans la base donnees
+		$stack = "";
+	}
+}
+
+function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, $percPerf){
+
+	//test si time est null
+	if($time == NULL)
+	{
+		$requeteTime = "SELECT TIME_TO_SEC('00:20:00') AS 'time'";
+		$resTime = mysqli_query($connexion, $requeteTime);
+		$time = mysqli_fetch_assoc($resTime)['time'];
+	}
+
+	else
+	{
+		$requeteTime = "SELECT TIME_TO_SEC('$time') AS 'time'";
+		$resTime = mysqli_query($connexion, $requeteTime);
+		$time = mysqli_fetch_assoc($resTime)['time'];
+
+	}
+
+
+
+	//test si genre est null
+	if($genre != NULL)
+	{
+		if($pref != NULL){
+			// recup les donnees selon le genre et la pref
+			$requetePrefGenre = "SELECT identifiantChanson FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre ORDER BY '$pref' DESC; ";
+			$resPrefGenre = mysqli_query($connexion, $requetePrefGenre);
+			$prefGenre = mysqli_fetch_all($resPrefGenre, MYSQLI_ASSOC);
+		}
+		else{
+			// recup les donnees selon le genre
+			$requeteGenre = "SELECT identifiantChanson FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre;";
+			$resGenre = mysqli_query($connexion, $requeteGenre);
+			$prefGenre = mysqli_fetch_all($resGenre, MYSQLI_ASSOC);
+		}
+	}
+	// test si pref est null
+	elseif($pref != NULL)
+	{
+		if ($pref = 'MorePlayCount')
+		{
+			$requetePref = "SELECT identifiantChanson, numeroVersion FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre ORDER BY '$pref' DESC ;";
+			$resPref = mysqli_query($connexion, $requetePref);
+			$prefData = mysqli_fetch_all($resPref, MYSQLI_ASSOC);
+		}
+		else
+		{
+			$requetePref = "SELECT identifiantChanson, numeroVersion FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre ORDER BY '$pref' ASC ;";
+			$resPref = mysqli_query($connexion, $requetePref);
+			$prefData = mysqli_fetch_all($resPref, MYSQLI_ASSOC);
+		}
+	}
+	// recup les donnnes sans filtre
+	$requeteAllSong = "SELECT identifiantChanson, numeroVersion FROM FichierAudio;";
+	$resAllSong = mysqli_query($connexion, $requeteAllSong);
+	$allSong= mysqli_fetch_all($resAllSong, MYSQLI_ASSOC);
+	
+
+	$compteur = $time;
+	$compteur2 = $time;
+	echo $compteur2*((100-$percPerf)/100);
+
+	while(($compteur >= 0))
+	{
+		echo "$compteur \n";
+		if ($pref == NULL && $genre == NULL)
+		{
+			$randomInt = random_int(0, count($allSong)-1);
+			$requeteNoPref = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$allSong[$randomInt]['identifiantChanson'].", ".$allSong[$randomInt]['numeroVersion'].");";
+			$resNoPref = mysqli_query($connexion, $requeteNoPref);
+			// recup de la duree de la derniere musique ajouter a la playlist 
+			$requeteLastInsertInPlaylist = "SELECT TIME_TO_SEC(dureeVersion) AS 'time' FROM FichierAudio WHERE identifiantChanson IN(SELECT identifiantChanson FROM Contient ORDER BY dateAjoutPlaylist DESC) 
+			AND numeroVersion IN (SELECT numeroVersion FROM Contient ORDER BY dateAjoutPlaylist DESC) ;";
+			$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
+			$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
+			$compteur = $compteur - $lastInsertInPlaylist;
+		}
+
+		elseif($pref != NULL && $genre == NULL)
+		{	
+			echo "$compteur \n";
+			while($compteur >= $compteur2*((100-$percPerf)/100))
+			{
+				$randomInt = random_int(0, count($prefData)/2);
+				$requetePref = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$prefData[$randomInt]['identifiantChanson'].", ".$prefData[$randomInt]['numeroVersion'].");";
+				$resPref = mysqli_query($connexion, $requetePref);
+				// recup de la duree de la derniere musique ajouter a la playlist 
+				$requeteLastInsertInPlaylist = "SELECT TIME_TO_SEC(dureeVersion) AS 'time' FROM FichierAudio WHERE identifiantChanson IN(SELECT identifiantChanson FROM Contient ORDER BY dateAjoutPlaylist DESC) 
+				AND numeroVersion IN (SELECT numeroVersion FROM Contient ORDER BY dateAjoutPlaylist DESC) ;";
+				$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
+				$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
+				$compteur = $compteur - $lastInsertInPlaylist;
+				
+			}
+			$pref = NULL;
+		}
+
+		elseif($pref == NULL && $genre != NULL)
+		{
+			$randomInt = random_int(0, count($prefGenre)-1);
+			$requeteWithGenre = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$prefGenre[$randomInt]['identifiantChanson'].", ".$prefGenre[$randomInt]['numeroVersion'].");";
+			$resWithGenre = mysqli_query($connexion, $requeteWithGenre);
+			// recup de la duree de la derniere musique ajouter a la playlist 
+			$requeteLastInsertInPlaylist = "SELECT TIME_TO_SEC(dureeVersion) AS 'time' FROM FichierAudio WHERE identifiantChanson IN(SELECT identifiantChanson FROM Contient ORDER BY dateAjoutPlaylist DESC) 
+			AND numeroVersion IN (SELECT numeroVersion FROM Contient ORDER BY dateAjoutPlaylist DESC) ;";
+			$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
+			$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
+			$compteur = $compteur - $lastInsertInPlaylist;
+		}
+
+		else
+		{
+			while($compteur*($percPerf/100) >= $compteur*(100-$percPerf/100))
+			{
+				$randomInt = random_int(0, count($prefGenre)/2);
+				$requetePrefGenre = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$prefGenre[$randomInt]['identifiantChanson'].", ".$prefGenre[$randomInt]['numeroVersion'].");";
+				$resPrefGenre = mysqli_query($connexion, $requetePrefGenre);
+				// recup de la duree de la derniere musique ajouter a la playlist 
+				$requeteLastInsertInPlaylist = "SELECT TIME_TO_SEC(dureeVersion) AS 'time' FROM FichierAudio WHERE identifiantChanson IN(SELECT identifiantChanson FROM Contient ORDER BY dateAjoutPlaylist DESC) 
+				AND numeroVersion IN (SELECT numeroVersion FROM Contient ORDER BY dateAjoutPlaylist DESC) ;";
+				$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
+				$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
+				$compteur = $compteur - $lastInsertInPlaylist;
+			}
+			$pref = NULL;
+		}
+	}
+	echo $compteur;
 }
 ?>
