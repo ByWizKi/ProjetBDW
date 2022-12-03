@@ -2,11 +2,10 @@
 //message d'erreur si il n'y a aucune info de table disponible
 $message="";
 
-
-$test = insertMusicIntoPlaylist($connexion, 8, NULL, NULL, 'MorePlayCount', 60);
 //recuperation des Genres
 $nomGenre = getNomGenre($connexion);
 
+// si le formulaire est fourni
 if(isset($_POST['validationAjoutPlaylist']))
     {   
         // on regarde si le titre est vide
@@ -18,14 +17,15 @@ if(isset($_POST['validationAjoutPlaylist']))
         }
         // on regarde si la duree est vide
         if(!empty($_POST['inputTimePlaylist'])){
-            $dureePlaylist  = '00:'.$_POST['inputTimePlaylist'];
+            $dureePlaylist = $_POST['inputTimePlaylist'];
         }
         else{
             $dureePlaylist = "00:20:00";
         }
         // on regarde si le genre est vide
         if(!empty($_POST['selectGenrePlaylist'])){
-            $genrePlaylist  = mysqli_real_escape_string($connexion, trim($_POST['selectGenrePlaylist']));
+            $genrePlaylist  = $_POST['selectGenrePlaylist'];
+            if($genrePlaylist == "NULL"){$genrePlaylist = NULL;}
         }
         else{
             $genrePlaylist = NULL;
@@ -41,9 +41,14 @@ if(isset($_POST['validationAjoutPlaylist']))
             
             else{
                 $selectPref = NULL;
+                $percPref = NULL;
             }
         }
-
-        
-}
+        // on creer la playlist
+        $creationPlaylist = createPlaylist($connexion, $titrePlaylist, $genrePlaylist, $dureePlaylist, $selectPref, $percPref);
+        if($creationPlaylist == false){
+            $message = "Creation de la playlist impossible !";
+        }
+        else $message = "Creation de la playlist reussi !";
+    }
 ?>

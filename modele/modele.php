@@ -183,19 +183,18 @@ function insertInto($connexion, $titre, $idGroupe, $idGenre, $version, $duree, $
 	}
 }
 
-function randomName($connexion, $genre ){
+function randomName($connexion, $genre){
 	// recupe de tout les noms est identifant dans l'ordre dec
 	$requete = "SELECT identifiantPlaylist FROM Playlist ORDER BY identifiantPlaylist DESC";
 	$res = mysqli_query($connexion, $requete);
 	$resultat = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	if(count($resultat) == 0){
-		$lastID = '1';
+		$lastID = 1;
 	}
 
 	else
 	{
-		$lastID = $resultat[0]['identifiantPlaylist'];
-		$lastID = $lastID + 1;
+		$lastID = $resultat[0]['identifiantPlaylist'] + 1;
 	}
 
 	// test si genre est null 
@@ -224,7 +223,7 @@ function namePlaylistExiste($connexion, $nomPlaylist){
 	}
 }
 
-function createPlaylist($connexion, $nomPlaylist, $genrePlaylist){
+function createPlaylist($connexion, $nomPlaylist, $genrePlaylist, $timePlaylist, $pref, $percPref){
 	// test si le nom == null
 	if ($nomPlaylist == NULL)
 	{
@@ -233,7 +232,7 @@ function createPlaylist($connexion, $nomPlaylist, $genrePlaylist){
 
 	// test de si le nom de la playlist existe
 	if(namePlaylistExiste($connexion, $nomPlaylist) == true){
-		return NULL;
+		return false;
 	}
 
 	// ajout de la playlist dans le bd
@@ -241,11 +240,17 @@ function createPlaylist($connexion, $nomPlaylist, $genrePlaylist){
 	$res = mysqli_query($connexion, $requete);
 	if($res == true){
 		//recup l'identifiant de la derniere playlist creer
-
+		$requete2 = "SELECT identifiantPlaylist FROM Playlist ORDER BY dateCreationPlaylist DESC";
+		$res2 = mysqli_query($connexion, $requete2);
+		$resultatIdPlaylist = mysqli_fetch_all($res2, MYSQLI_ASSOC);
+		$idPlaylist = $resultatIdPlaylist[0]['identifiantPlaylist'];
 
 		// ajout des musique dans la base donnees
-		$stack = "";
+		insertMusicIntoPlaylist($connexion, $idPlaylist, $genrePlaylist, $timePlaylist, $pref, $percPref);
+		return true;
 	}
+	return false;
+	
 }
 
 function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, $percPerf){
@@ -266,20 +271,18 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 
 	}
 
-
-
 	//test si genre est null
 	if($genre != NULL)
 	{
 		if($pref != NULL){
 			// recup les donnees selon le genre et la pref
-			$requetePrefGenre = "SELECT identifiantChanson FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre ORDER BY '$pref' DESC; ";
+			$requetePrefGenre = "SELECT identifiantChanson, numeroVersion FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre ORDER BY '$pref' DESC; ";
 			$resPrefGenre = mysqli_query($connexion, $requetePrefGenre);
 			$prefGenre = mysqli_fetch_all($resPrefGenre, MYSQLI_ASSOC);
 		}
 		else{
 			// recup les donnees selon le genre
-			$requeteGenre = "SELECT identifiantChanson FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre;";
+			$requeteGenre = "SELECT identifiantChanson, numeroVersion FROM FichierAudio NATURAL JOIN APourGenre NATURAL JOIN Genre WHERE '$genre' = nomGenre;";
 			$resGenre = mysqli_query($connexion, $requeteGenre);
 			$prefGenre = mysqli_fetch_all($resGenre, MYSQLI_ASSOC);
 		}
@@ -308,11 +311,9 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 
 	$compteur = $time;
 	$compteur2 = $time;
-	echo $compteur2*((100-$percPerf)/100);
 
-	while(($compteur >= 0))
+	while(($compteur > 0))
 	{
-		echo "$compteur \n";
 		if ($pref == NULL && $genre == NULL)
 		{
 			$randomInt = random_int(0, count($allSong)-1);
@@ -328,7 +329,7 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 
 		elseif($pref != NULL && $genre == NULL)
 		{	
-			echo "$compteur \n";
+			echo " je suis la";
 			while($compteur >= $compteur2*((100-$percPerf)/100))
 			{
 				$randomInt = random_int(0, count($prefData)/2);
@@ -346,7 +347,7 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 		}
 
 		elseif($pref == NULL && $genre != NULL)
-		{
+		{	
 			$randomInt = random_int(0, count($prefGenre)-1);
 			$requeteWithGenre = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$prefGenre[$randomInt]['identifiantChanson'].", ".$prefGenre[$randomInt]['numeroVersion'].");";
 			$resWithGenre = mysqli_query($connexion, $requeteWithGenre);
@@ -359,7 +360,7 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 		}
 
 		else
-		{
+		{	
 			while($compteur*($percPerf/100) >= $compteur*(100-$percPerf/100))
 			{
 				$randomInt = random_int(0, count($prefGenre)/2);
@@ -371,10 +372,10 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 				$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
 				$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
 				$compteur = $compteur - $lastInsertInPlaylist;
+
 			}
 			$pref = NULL;
 		}
 	}
-	echo $compteur;
 }
 ?>
