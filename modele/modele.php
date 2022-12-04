@@ -139,7 +139,6 @@ function chansonExiste($connexion, $titre, $version, $groupe){
 	return -1;
 }
 
-
 function insertInto($connexion, $titre, $idGroupe, $idGenre, $version, $duree, $dateSortie){
 	//Convertion des donnees du formaulaire
 	$titre = mysqli_real_escape_string($connexion, $titre); 

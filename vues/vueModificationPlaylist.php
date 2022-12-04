@@ -11,6 +11,9 @@
                 </select>
                 <input type="submit" value="Valider">
             </form>
+            <div id="linkToCompare">
+                <a href="index.php?page=ComparePlaylist"></a>
+            </div>
         </div>
         <div id="text5"><p><?=$message?></p></div>
     </div>
