@@ -378,4 +378,58 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 		}
 	}
 }
+
+function getAllPlaylist($connexion){
+	$requete = "SELECT DISTINCT * FROM Playlist";
+	$res = mysqli_query($connexion, $requete);
+	$allPlaylist = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $allPlaylist;
+}
+
+function getAllSong($connexion){
+	$requete = "SELECT titreChanson, numeroVersion, libelleVersion,identifiantChanson FROM FichierAudio NATURAL JOIN Chanson";
+	$res = mysqli_query($connexion, $requete);
+	$allSong = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $allSong;
+}
+
+function getAllSongFromPlaylist($connexion, $idPlaylist){
+	$requete = "SELECT numeroVersion, identifiantChanson, titreChanson, libelleVersion FROM FichierAudio NATURAL JOIN Contient NATURAL JOIN Chanson 
+	WHERE Contient.identifiantPlaylist = $idPlaylist; ";
+	$res = mysqli_query($connexion, $requete);
+	$allSongFPL = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return $allSongFPL;
+}
+
+function addPlaylist($connexion, $idPlaylist, $numeroVersion){
+	$requeteBis = "SELECT identifiantChanson FROM FichierAudio WHERE $numeroVersion=numeroVersion;";
+	$resBis = mysqli_query($connexion, $requeteBis);
+	$idChanson = mysqli_fetch_assoc($resBis);
+	$requete = "INSERT INTO Contient (identifiantPlaylist, identifiantChanson, numeroVersion) VALUES ($idPlaylist, ".$idChanson['identifiantChanson']." , $numeroVersion);";
+	$res = mysqli_query($connexion, $requete);
+	if($res ==true){return true;}
+	else{return false;}
+
+function delPlaylist($connexion, $idPlaylist, $numeroVersion){
+	$requeteBis = "SELECT identifiantChanson FROM FichierAudio WHERE $numeroVersion=numeroVersion;";
+	$resBis = mysqli_query($connexion, $requeteBis);
+	$idChanson = mysqli_fetch_assoc($resBis);
+	$requete = "DELETE FROM Contient WHERE identifiantChanson = ".$idChanson['identifiantChanson']." AND identifiantPlaylist = $idPlaylist AND numeroVersion = $numeroVersion;";
+	echo $requete;
+	$res = mysqli_query($connexion, $requete);
+	if($res == true){return true;}
+	else{return false;}
+}
+
+function getInfoAboutPlaylist($connexion, $idPlaylist){
+	$requete = "SELECT nomPlaylist, DATE_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(dureeVersion))), '%imin%ssec') AS 
+	dureePlaylist, COUNT(numeroVersion) AS numSong FROM Contient NATURAL JOIN FichierAudio NATURAL JOIN Playlist WHERE Playlist.identifiantPlaylist = $idPlaylist";
+	$res = mysqli_query($connexion, $requete);
+	$info = mysqli_fetch_all($res, MYSQLI_ASSOC);
+	return$info;
+}
+
+
+
+}
 ?>
