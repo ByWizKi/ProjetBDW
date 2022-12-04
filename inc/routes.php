@@ -4,6 +4,7 @@ $routes = array(
     'AjouterChanson' => array('controleur' => 'controleurAjouterChanson', 'vue' => 'vueAjouterChanson'),
     'AjouterPlaylist' => array('controleur' => 'controleurAjouterPlaylist', 'vue' => 'vueAjouterPlaylist'),
     'ModificationPlaylist' => array('controleur' => 'controleurModificationPlaylist', 'vue' => 'vueModificationPlaylist'),
+    'ModificationPlaylist2' => array('controleur' => 'controleurModificationPlaylist2', 'vue' => 'vueModificationPlaylist2'),
     'InfoChanson' => array('controleur' => 'controleurInfoChanson', 'vue' => 'vueInfoChanson'),
     'InfoAlbum' => array('controleur' => 'controleurInfoAlbum', 'vue' => 'vueInfoAlbum'),
     'InfoGenre' => array('controleur' => 'controleurInfoGenre', 'vue' => 'vueInfoGenre'),
