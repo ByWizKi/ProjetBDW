@@ -169,7 +169,7 @@ function insertInto($connexion, $titre, $idGroupe, $idGenre, $version, $duree, $
 		$res2 = mysqli_query($connexion, $requeteForApourGenre);
 
 		//Ajout de la version dans la table ficher audio
-		$requeteForFichierAudio = "INSERT INTO FichierAudio (numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (NULL, '$version', '$nomFichier', '00:$duree', '$dateSortie', 0, 0, NULL, $lastChanson[0]);";
+		$requeteForFichierAudio = "INSERT INTO FichierAudio (numeroVersion, libelleVersion, nomFichierAudio, dureeVersion, dateCreationVersion, playCount, skipCount, descriptionVersion, identifiantChanson) VALUES (NULL, '$version', '$nomFichier', '$duree', '$dateSortie', 0, 0, NULL, $lastChanson[0]);";
 		$res3 = mysqli_query($connexion, $requeteForFichierAudio);
 
 		if($res1 == true and $res2 == true and $res3 == true ){
@@ -357,6 +357,7 @@ function insertMusicIntoPlaylist($connexion, $idPlaylist, $genre, $time, $pref, 
 			$resLastInsertInPlaylist = mysqli_query($connexion, $requeteLastInsertInPlaylist);
 			$lastInsertInPlaylist = mysqli_fetch_assoc($resLastInsertInPlaylist)['time'];
 			$compteur = $compteur - $lastInsertInPlaylist;
+			if($compteur > 0){$genre=NULL;}
 		}
 
 		else

@@ -26,7 +26,7 @@
             <input type="text" name="inputVersion" id="inputVersion" required>
 
             <label for="inputTime" required>Duree*</label>
-            <input type="time" name="inputTime" id="inputTime">
+            <input type="text" name="inputTime" id="inputTime" placeholder="hh:mm:ss">
 
             <label for="inputDate">Date De Sortie</label>
             <input type="date" name="inputDate" id="inputDate" required>
