@@ -27,7 +27,10 @@
 				elseif($nomTable =="Musicien"){ ?>
 					<li><?=$InfoRecherche['prenomMusicien']?> <?=$InfoRecherche['nomMusicien']?> <?=$InfoRecherche['nomScene']?></li>
 
-				<?php }?>      
+				<?php }
+					elseif($nomTable =="Playlist"){ ?>
+						<li><?=$InfoRecherche['nomPlaylist']?> <?=$InfoRecherche['nbVersion']?> <?=$InfoRecherche['dateCreationPlaylist']?></li>     
+			<?php } ?>
 			<?php } ?>
 		</ul>
 	    <?php } ?>

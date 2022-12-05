@@ -52,10 +52,10 @@ function topElementAlbum($connexion){
 function informationTable($connexion, $nomTable){
 	$nomTable = mysqli_real_escape_string($connexion, $nomTable);
 	if ($nomTable == 'Chanson'){
-		$requete = "SELECT titreChanson, nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio;";
+		$requete = "SELECT titreChanson, nomGroupe, DATE_FORMAT(dureeVersion, '%imin %ssec') AS dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio;";
 	}
 	elseif($nomTable == 'Groupe'){
-		$requete = "SELECT nomGroupe, COUNT(titreChanson)AS nb_Chanson, dateCreationGroupe FROM Groupe NATURAL JOIN Chanson GROUP BY nomGroupe;";
+		$requete = "SELECT nomGroupe, COUNT(titreChanson)AS nb_Chanson, DATE_FORMAT(dateCreationGroupe, '%d/%m/%Y') AS dateCreationGroupe FROM Groupe NATURAL JOIN Chanson GROUP BY nomGroupe;";
 	}
 
 	elseif($nomTable == 'Genre'){
@@ -63,7 +63,7 @@ function informationTable($connexion, $nomTable){
 	}
 
 	elseif($nomTable == 'Album'){
-		$requete = "SELECT titreAlbum, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson GROUP BY titreAlbum;";
+		$requete = "SELECT titreAlbum, DATE_FORMAT(dateSortieAlbum, '%d/%m/%Y') AS dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson GROUP BY titreAlbum;";
 	}
 	else{
 		$requete = "SELECT * FROM $nomTable;";
@@ -79,7 +79,7 @@ function recherche($connexion, $nomTable, $texteRecherche) {
 
 	if ($nomTable == 'Chanson'){
 		
-		$requete = 'SELECT titreChanson, nomGroupe, dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson LIKE \'%'.$texteRecherche.'%\';';
+		$requete = 'SELECT titreChanson, nomGroupe, DATE_FORMAT(dureeVersion, "%imin %ssec") AS dureeVersion, libelleVersion From Chanson NATURAL JOIN Groupe NATURAL JOIN FichierAudio WHERE titreChanson LIKE \'%'.$texteRecherche.'%\';';
 
 	}
 
@@ -100,7 +100,11 @@ function recherche($connexion, $nomTable, $texteRecherche) {
 
 	elseif($nomTable == 'Album'){
 
-		$requete = 'SELECT titreAlbum, dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson WHERE titreAlbum LIKE \'%'.$texteRecherche.'%\'GROUP BY titreAlbum;';
+		$requete = 'SELECT titreAlbum, DATE_FORMAT(dateSortieAlbum, "%d/%m/%Y") AS dateSortieAlbum FROM Album NATURAL JOIN Enregistre NATURAL JOIN Groupe NATURAL JOIN Chanson WHERE titreAlbum LIKE \'%'.$texteRecherche.'%\'GROUP BY titreAlbum;';
+	}
+
+	elseif($nomTable = 'Playlist'){
+		$requete = 'SELECT nomPlaylist, DATE_FORMAT(dateCreationPlaylist, "%d/%m/%Y") AS dateCreationPlaylist, COUNT(numeroVersion) AS nbVersion FROM Playlist NATURAL JOIN Contient WHERE nomPlaylist LIKE \'%'.$texteRecherche.'%\' GROUP BY nomPlaylist;';
 	}
 	$res = mysqli_query($connexion, $requete);
 	$rechercheTable = mysqli_fetch_all($res, MYSQLI_ASSOC);
@@ -427,6 +431,41 @@ function getInfoAboutPlaylist($connexion, $idPlaylist){
 	$res = mysqli_query($connexion, $requete);
 	$info = mysqli_fetch_all($res, MYSQLI_ASSOC);
 	return $info;
+}
+
+function getNbSameSongGenre($connexion, $idPL1, $idPL2){
+	$requete = "SELECT COUNT(numeroVersion) AS nbSameSongGenre FROM Contient NATURAL JOIN APourGenre WHERE  
+	APourGenre.identifiantGenre IN (SELECT identifiantGenre FROM APourGenre NATURAL JOIN Contient WHERE identifiantPlaylist = $idPL2)";
+	$resQ = mysqli_query($connexion, $requete);
+	$res = mysqli_fetch_assoc($resQ);
+	$nbSameSongGenre = $res['nbSameSongGenre'];
+	return $nbSameSongGenre;
+}
+
+function getNbSameSong($connexion, $idPL1, $idPL2){
+	$requete = "SELECT COUNT(numeroVersion) AS nbSameSong FROM Contient WHERE identifiantPlaylist = $idPL1 AND numeroVersion IN (SELECT numeroVersion FROM Contient WHERE identifiantPlaylist = $idPL2);";
+	$resQ = mysqli_query($connexion, $requete);
+	$res = mysqli_fetch_assoc($resQ);
+	$nbSameSong = $res['nbSameSong'];
+	return $nbSameSong;
+}
+
+function getDureeDiff($connexion, $idPL1, $idPL2){
+	// recup des durees des playlists 
+	$requete1 = "SELECT SUM(TIME_TO_SEC(dureeVersion)) AS dureePlaylist FROM Contient NATURAL JOIN Playlist NATURAL JOIN FichierAudio WHERE Playlist.identifiantPlaylist = $idPL1;";
+	$resQ1 = mysqli_query($connexion, $requete1);
+	$res1 = mysqli_fetch_assoc($resQ1);
+	$dureePL1 = $res1['dureePlaylist'];
+	
+	$requete2 = "SELECT SUM(TIME_TO_SEC(dureeVersion)) AS dureePlaylist FROM Contient NATURAL JOIN Playlist NATURAL JOIN FichierAudio WHERE Playlist.identifiantPlaylist = $idPL2;";
+	$resQ2 = mysqli_query($connexion, $requete2);
+	$res2 = mysqli_fetch_assoc($resQ2);
+	$dureePL2 = $res2['dureePlaylist'];
+
+	$requete3 = "SELECT DATE_FORMAT(SEC_TO_TIME(ABS($dureePL1 - $dureePL2)), '%imin%ssec') AS dureeDiff, ABS($dureePL1 - $dureePL2) AS dureeDiffSec";
+	$resQ3 = mysqli_query($connexion, $requete3);
+	$dureeDiff = mysqli_fetch_assoc($resQ3);
+	return $dureeDiff;
 }
 
 ?>

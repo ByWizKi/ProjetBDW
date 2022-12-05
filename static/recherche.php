@@ -12,6 +12,7 @@
                 <option value="Musicien">Musicien</option>
                 <option value="Genre">Genre</option>
                 <option value="Album">Album</option>
+                <option value="Playlist">Playlist</option>
             </select>
         </form>
         
