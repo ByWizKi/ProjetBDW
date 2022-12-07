@@ -6,7 +6,7 @@
 	            <li><?= $topChanson[$i]['titre']?></li>
         <?php }?>
         <label for="boutonVoirToutTopMusique"></label>
-        <a href="index.php?page=InfoChanson">Voir Tout</a>
+        <a href="index.php?page=InfoChanson" id="VoirTout">Voir Tout</a>
     </div>
 
     <div id="divTopAlbum">
@@ -16,7 +16,7 @@
 	        <li><?= $topAlbum[$i]['titreAlbum']?></li>
         <?php }?>
         <label for="boutonVoirToutTopAlbum"></label>
-        <a href="index.php?page=InfoAlbum">Voir Tout</a>
+        <a href="index.php?page=InfoAlbum" id="VoirTout">Voir Tout</a>
     </div>
 
     <div id="divTopGenre">
