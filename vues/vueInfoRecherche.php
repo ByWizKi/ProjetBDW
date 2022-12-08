@@ -1,5 +1,5 @@
 <main>
-    <div>
+    <div id="infoRecherche">
         <?php if(isset($message)) { ?>
 		    <p><?= $message ?></p>
 	    <?php } ?>

@@ -1,6 +1,6 @@
 <main>
         <div id="divInfoAlbum">
-            <h1>TOUT LES ALBUMS</h1>
+            <h1>TOUS LES ALBUMS</h1>
             <p>Il y a <?=$nombreAlbum?> albums</p>
             <?php foreach($InfoAlbums as $InfoAlbum){ ?>
                 <ul>
