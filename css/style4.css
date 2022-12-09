@@ -339,7 +339,7 @@ footer{
     
 }
 #divAjouterChanson,#divAjouterPlaylist,#comparPL{
-
+    align-items: center;
     width: 70%;
     min-height: 30em;
     margin-right: 15%;
@@ -349,15 +349,22 @@ footer{
     background: #494848;
     box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
     border-radius: 0.6em;
+    gap: 15%;
+}
+
+#h1Ajouter{
+    align-items: center;
 }
 
 #divAjouterChanson2{
-    position: absolute;
+
+    align-items: center;
     margin-top:5%;
     font-size: x-large;
     }  
 
 #divAjouterChanson2{
+    align-items: center;
     position: absolute;
     margin-top:20%;
     font-size: x-large;

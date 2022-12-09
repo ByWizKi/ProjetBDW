@@ -1,6 +1,6 @@
 <main>
     <div id="divAjouterChanson">
-        <h1>Ajouter Une Chanson</h1>
+        <h1 id="h1Ajouter">Ajouter Une Chanson</h1>
         <form method="POST" action="#" id="formAjouterChanson">
             <div id="divAjouterChanson1"><label for="inputTitre">Titre*</label>
             <input type="text" name="inputTitre" id="inputTitre" required>

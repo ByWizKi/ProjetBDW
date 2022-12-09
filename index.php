@@ -13,9 +13,10 @@ $connexion = getConnexionBD();
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="img/logo.ico">
     <meta charset="utf-8" />
     <title><?= $nomSite?></title>
-    <link href="css/style3.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/style4.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body id="mainBody">
     <?php include('static/header.php'); ?>
