@@ -15,7 +15,7 @@ $connexion = getConnexionBD();
 <head>
     <meta charset="utf-8" />
     <title><?= $nomSite?></title>
-    <link href="css/style1.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/style3.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body id="mainBody">
     <?php include('static/header.php'); ?>

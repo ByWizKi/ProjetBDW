@@ -9,7 +9,7 @@
                         <option value="<?=$playlist['identifiantPlaylist']?>"><?=$playlist['nomPlaylist']?> <?= $playlist['identifiantPlaylist']?></option>
                     <?php }?>
                 </select>
-                <input type="submit" value="Valider">
+                <input type="submit" value="Valider" id="ValiderPlaylist">
             </form>
             <div id="linkToCompare">
                 <a href="index.php?page=ComparePlaylist">Compare 2 Playlist</a>

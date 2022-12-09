@@ -5,14 +5,47 @@
 }
 
 #LogoHeader{
-    position: absolute;
-    margin-left: 1%;
+    position:absolute;
+    margin-top: 2.7%;
+    margin-left: 7%;
     width: 6em;
     height: 6em;
     left: 1.32em;
     top: 8.82em;
     background: #494848;
+    border-radius: 0.6em;
+}
 
+#creativeCommon,#ImgFoot{
+    margin-top: 0%;
+    width: auto;
+    height: 6em;
+    left: 1.32em;
+    top: 8.82em;
+    background: #494848;
+    border-radius: 0.6em;
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+}
+
+
+#TextFooter{
+    
+    display: flex;
+    flex-direction: row;
+   
+    }
+
+#divFooter{
+    height: auto;
+    display: flex;
+    width: 95%;
+    flex-direction:row-reverse;
+    align-items: center;
+    gap: 20%;
+    padding: 0px;
+    
 }
 
 #divNav{
@@ -193,15 +226,16 @@
 
 
 
-head, body{
+header, body{
     color: #FFFFFF;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius: 0.3em;
 }
 
-#inputValidate{
+#inputValidate, #ValiderPlaylist{
     border: none;
     height: auto;
-    width: 5%;
+    width: auto;
     margin-top: 1%;
     background: #FFE000;
     color: #000000;
@@ -218,9 +252,10 @@ head, body{
     letter-spacing: 0.3em;
     margin-bottom: 2%;
 }
-#divTopGenre, #divTopAlbum, #divTopMusique{
+
+#divTopGenre, #divTopAlbum, #divTopMusique, #infoRecherche, #divInfoAlbum, #divInfoGenre, #divInfoChanson, #divMain {
     width: 70%;
-    min-height: 40em;
+    min-height: 20em;
     margin-right: 15%;
     margin-left: 15%;
     height: auto;
@@ -230,17 +265,17 @@ head, body{
     border-radius: 0.6em;
 }
 
-#textTopAlbum, #textTopMusique, #textTopGenre{
+#textTopAlbum, #textTopMusique, #textTopGenre,#t1CPL,#infoPL1, #infoPL2, #infoPL{
     width: 50%;
     margin-left: 35%;
     
 }
 
-#selectSearch{
+#selectSearch, #selectPlaylist{
     position: relative;
-    width: 10%;
+    width: 20%;
     align-items: center;
-    height: auto;
+    height: 2%;
     border: none;
     background: #b6b4b4;
     box-shadow: 0px 0.24em 1.2em rgba(0, 0, 0, 0.3);
@@ -262,10 +297,10 @@ head, body{
     font-weight: 400;
     font-size: 1.2em;
     line-height: 2.6em;
-    align-items: center;
+    align-items: right;
     text-align: center;
     letter-spacing: 0.3em;
-    margin-top: 40%;
+    margin-top: 70%;
     margin-bottom: 2%;
 
 }
@@ -303,8 +338,8 @@ footer{
     border-radius: 0.6em;
     
 }
-#divAjouterChanson{
-    
+#divAjouterChanson,#divAjouterPlaylist,#comparPL{
+
     width: 70%;
     min-height: 30em;
     margin-right: 15%;
@@ -319,13 +354,13 @@ footer{
 #divAjouterChanson2{
     position: absolute;
     margin-top:5%;
-    font-size: large;
+    font-size: x-large;
     }  
 
 #divAjouterChanson2{
     position: absolute;
     margin-top:20%;
-    font-size: large;
+    font-size: x-large;
 }
 
 #selectGenre, #selectGroupe, #inputTitre, #inputVersion, #inputTime, #inputDate, #inputCheckBox
@@ -341,8 +376,6 @@ footer{
 }
 
 li{
+    font-size: x-large;
     margin-left: 5%;
 } 
-#logoheader{
-    
-}
